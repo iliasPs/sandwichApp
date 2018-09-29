@@ -12,16 +12,19 @@ import com.example.android.sandwichapp.model.Sandwich;
 import com.example.android.sandwichapp.utils.JsonUtils;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
-    TextView alsoKnownTv;
-    TextView originTv;
-    TextView ingredientsTV;
-    TextView descriptionTV;
+    @BindView(R.id.also_known_tv) TextView alsoKnownTv;
+    @BindView(R.id.origin_tv) TextView originTv;
+    @BindView(R.id.ingredients_tv) TextView ingredientsTV;
+    @BindView(R.id.description_tv) TextView descriptionTV;
 
 
     @Override
@@ -29,10 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        alsoKnownTv = (TextView) findViewById(R.id.also_known_tv);
-        originTv = (TextView) findViewById(R.id.origin_tv);
-        ingredientsTV= (TextView) findViewById(R.id.ingredients_tv);
-        descriptionTV= (TextView) findViewById(R.id.description_tv);
+        ButterKnife.bind(this);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
 
@@ -62,6 +62,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_launcher_foreground)
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());

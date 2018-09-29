@@ -18,13 +18,13 @@ public class JsonUtils {
         try {
             JSONObject sandwichJson = new JSONObject(json);
             JSONObject nameJson = sandwichJson.getJSONObject("name");
-            String mainName = nameJson.getString("mainName");
+            String mainName = nameJson.optString("mainName");
             Log.v("asdf", "mainname " + mainName);
             JSONArray alsoKnownAsJsonArray = nameJson.getJSONArray("alsoKnownAs");
             List<String> alsoKnownList = jsonArrayToStringList(alsoKnownAsJsonArray);
-            String placeOfOrigin = sandwichJson.getString("placeOfOrigin");
-            String description = sandwichJson.getString("description");
-            String image = sandwichJson.getString("image");
+            String placeOfOrigin = sandwichJson.optString("placeOfOrigin");
+            String description = sandwichJson.optString("description");
+            String image = sandwichJson.optString("image");
             JSONArray ingredientJsonArray = sandwichJson.getJSONArray("ingredients");
             List<String> ingredients = jsonArrayToStringList(ingredientJsonArray);
 
